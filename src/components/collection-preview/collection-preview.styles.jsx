@@ -9,6 +9,10 @@ export const CollectionPreviewContainer = styled.div`
     font-size: 28px;
     margin-bottom: 25px;
   }
+
+  a:hover {
+    opacity: 0.5;
+  }
 `;
 
 export const PreviewContainer = styled.div`

@@ -26,24 +26,6 @@ const SignUp = ({ signUpStart }) => {
     }
 
     signUpStart({ email, password, displayName });
-
-    // try {
-    //   const { user } = await auth.createUserWithEmailAndPassword(
-    //     email,
-    //     password
-    //   );
-
-    //   await createUserProfileDocument(user, { displayName });
-
-    //   this.setState({
-    //     displayName: "",
-    //     email: "",
-    //     password: "",
-    //     confirmPassword: "",
-    //   });
-    // } catch (err) {
-    //   console.error(err);
-    // }
   };
 
   const handleChange = (e) => {

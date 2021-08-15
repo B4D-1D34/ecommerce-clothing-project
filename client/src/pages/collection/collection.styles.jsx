@@ -14,4 +14,10 @@ export const CollectionItemsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
+  justify-items: center;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+  }
 `;

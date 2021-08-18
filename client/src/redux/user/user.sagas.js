@@ -7,6 +7,7 @@ import {
   googleProvider,
   createUserProfileDocument,
   getCurrentUser,
+  setUserCartitems,
 } from "../../firebase/firebase.utils";
 
 import {
@@ -60,8 +61,9 @@ export function* isUserAuthenticated() {
   }
 }
 
-export function* signOut() {
+export function* signOut({ payload: { cartItems, id } }) {
   try {
+    yield call(setUserCartitems, cartItems, id);
     yield auth.signOut();
     yield put(signOutSuccess());
   } catch (error) {

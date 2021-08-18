@@ -8,6 +8,7 @@ import {
 const INITIAL_STATE = {
   dropdownIsShown: false,
   cartItems: [],
+  error: null,
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -36,6 +37,17 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: [],
+      };
+    case CartActionTypes.CART_FETCH_SUCCESS:
+      return {
+        ...state,
+        cartItems: action.payload,
+        error: null,
+      };
+    case CartActionTypes.CART_FETCH_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

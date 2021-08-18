@@ -38,7 +38,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-export const createUserProfileCart = async (userId) => {
+export const createUserProfileCart = async (userId, cartItems) => {
   if (!userId) return;
 
   const cartRef = firestore.doc(`carts/${userId}`);
@@ -48,7 +48,7 @@ export const createUserProfileCart = async (userId) => {
   if (!snapShot.exists) {
     try {
       await cartRef.set({
-        cartItems: [],
+        cartItems: cartItems,
       });
     } catch (err) {
       console.log("error creating cart", err.message);
@@ -68,7 +68,7 @@ export const setUserCartitems = async (cartItems, id) => {
       cartItems: cartItems,
     });
   } catch (err) {
-    console.log("error creating cart", err.message);
+    console.log("error saving cart", err.message);
   }
 };
 

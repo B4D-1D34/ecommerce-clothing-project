@@ -1,8 +1,9 @@
-import { all, call, takeLatest, put } from "@redux-saga/core/effects";
+import { all, call, takeLatest, put, select } from "@redux-saga/core/effects";
 import { createUserProfileCart } from "../../firebase/firebase.utils";
 
 import UserActionTypes from "../user/user.types";
 import { cartFetchFailure, cartFetchSuccess, clearCart } from "./cart.actions";
+import { selectCartItems } from "./cart.selectors";
 
 export function* clearCartOnSignOut() {
   yield put(clearCart());
@@ -10,7 +11,8 @@ export function* clearCartOnSignOut() {
 
 export function* getCartFromStore({ payload: { id } }) {
   try {
-    const cartRef = yield call(createUserProfileCart, id);
+    const cartItems = yield select(selectCartItems);
+    const cartRef = yield call(createUserProfileCart, id, cartItems);
     const cartSnapshot = yield cartRef.get();
     yield put(cartFetchSuccess({ ...cartSnapshot.data() }));
   } catch (error) {
